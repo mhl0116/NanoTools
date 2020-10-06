@@ -123,7 +123,9 @@ bool SS::passesElectronMVA(int idx, SS::ElectronMVAIDLevel id_level, int year) {
     float disc;
     switch (year) {
     case (2016):
-        disc = Electron_mvaSpring16GP().at(idx);
+        //Hualin: this is a temporary fix... mvaSpring16GP is not in latest nanoAOD:
+        //disc = Electron_mvaSpring16GP().at(idx);
+        disc = Electron_mvaFall17V1noIso().at(idx);
         break;
     case (2017):
         disc = Electron_mvaFall17V1noIso().at(idx);
