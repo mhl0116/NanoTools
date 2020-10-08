@@ -27,6 +27,7 @@ Photons getPhotons() {
     for (unsigned int ipho = 0; ipho < nt.nPhoton(); ipho++) {
         Photon pho = Photon(ipho);
         //cout << "eta: " << pho.eta() << ", r9: " << pho.r9() << endl;
+        if (pho.eveto() < 0.5) continue;
         bool pho_EB_highR9 = abs(pho.eta()) < 1.5 && pho.r9() > 0.85; 
         bool pho_EE_highR9 = abs(pho.eta()) > 1.5 && pho.r9() > 0.90; 
         bool pho_EB_lowR9 = abs(pho.eta()) < 1.5 && pho.r9() < 0.85 && pho.r9() > 0.50 && UseLowR9Photon(pho, true);
@@ -51,7 +52,7 @@ vector<DiPhoton> DiPhotonPreselection(Photons &photons, bool verbose=false) {
             Photon pho1 = photons[i1];
             Photon pho2 = photons[i2];
             DiPhoton dipho = pair<Photon, Photon>(pho1,pho2);
-            //if ( !(dipho.first.pt() > 35.0 && dipho.second.pt() > 25.0) ) continue;
+            if ( !(dipho.first.pt() > 35.0 && dipho.second.pt() > 25.0) ) continue;
             if ( !(dipho.first.hoe() < 0.08 && dipho.second.hoe() < 0.08) ) continue;
             if ( !(abs(dipho.first.eta()) < 2.5 && abs(dipho.second.eta()) < 2.5) ) continue;
             if ( !(abs(dipho.first.eta()) < 1.4442 || abs(dipho.first.eta()) > 1.566) ) continue;

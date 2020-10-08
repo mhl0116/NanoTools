@@ -85,11 +85,11 @@ int ScanChain(TChain *ch) {
 
             //if (event > 1000) break;
 
-            cout << "this is " << event << " th event" << endl; 
+            //cout << "this is " << event << " th event" << endl; 
             auto phos = getPhotons();
             auto diphotons = DiPhotonPreselection(phos);
-            cout << "number of photons: " << phos.size() << endl;
-            cout << "number of diphoton pairs: " << diphotons.size() << endl;
+            //cout << "number of photons: " << phos.size() << endl;
+            //cout << "number of diphoton pairs: " << diphotons.size() << endl;
             //auto result = getBestHyp(leps, false);
             //int hyp_class = result.first;
             //if (hyp_class < 0) continue;
@@ -122,6 +122,7 @@ int ScanChain(TChain *ch) {
 
         } // Event loop
 
+        cout << "nTotoal: " << h_weight_full->Integral() << ", nPass: " << h_weight->Integral() << ", eff: " << h_weight->Integral()/h_weight_full->Integral() << endl;
         delete file;
 
 
